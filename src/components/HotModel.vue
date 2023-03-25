@@ -200,7 +200,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .arr-left {
   position: absolute;
   left: 10%;

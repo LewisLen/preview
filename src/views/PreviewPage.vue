@@ -5,29 +5,29 @@
     </header>
     <section class="container ignore-container">
       <section class="item-left">
-        <ItemOne class="item-page" />
-        <ItemTwo class="item-page" />
+        <PreviewOne class="item-page" />
+        <PreviewTwo class="item-page" />
       </section>
       <section class="item-center">
-        <MapPage />
+        <PreviewMapPage />
       </section>
       <section class="item-right">
-        <ItemThree class="item-page" />
-        <ItemFour class="item-page" />
+        <PreviewThree class="item-page" />
+        <PreviewFour class="item-page" />
       </section>
     </section>
   </div>
 </template>
 
 <script setup>
-import ItemOne from "@/components/ItemOne.vue";
-import ItemTwo from "@/components/ItemTwo.vue";
-import ItemThree from "@/components/ItemThree.vue";
-import ItemFour from "@/components/ItemFour.vue";
-import MapPage from "@/components/MapPage.vue";
+import PreviewOne from "@/components/PreviewOne.vue";
+import PreviewTwo from "@/components/PreviewTwo.vue";
+import PreviewThree from "@/components/PreviewThree.vue";
+import PreviewFour from "@/components/PreviewFour.vue";
+import PreviewMapPage from "@/components/PreviewMapPage.vue";
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 body {
   background-color: #161522;
 }
@@ -75,5 +75,14 @@ header {
   margin: 8px;
   background-color: #222733;
   border-radius: 12px;
+}
+:deep(.chart) {
+  height: 4.5rem;
+}
+:deep(h2) {
+  height: 0.6rem;
+  color: #fff;
+  line-height: 0.6rem;
+  text-align: center;
 }
 </style>

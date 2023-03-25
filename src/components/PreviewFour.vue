@@ -119,15 +119,3 @@ onMounted(() => {
   });
 });
 </script>
-
-<style scoped>
-.chart {
-  height: 4.5rem;
-}
-h2 {
-  height: 0.6rem;
-  color: #fff;
-  line-height: 0.6rem;
-  text-align: center;
-}
-</style>

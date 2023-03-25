@@ -104,15 +104,3 @@ onMounted(() => {
   window.onresize = myChart.resize;
 });
 </script>
-
-<style lang="less" scoped>
-.chart {
-  height: 360px;
-}
-h2 {
-  height: 0.6rem;
-  color: #fff;
-  line-height: 0.6rem;
-  text-align: center;
-}
-</style>
