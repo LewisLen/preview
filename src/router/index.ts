@@ -1,26 +1,67 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import Home from "../views/HomePage.vue";
+import Login from "../views/LoginPage.vue";
+import Chat from "../views/ChatPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
+    path: "/demo",
+    name: "Demo",
+    component: () => import("../views/DemoPage.vue"),
+  },
+  {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "Index",
+    redirect: "/home",
+  },
+  {
+    path: "/home",
+    name: "Home",
+    component: Home,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
   },
   {
     path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    name: "About",
+    component: () => import("../views/AboutPage.vue"),
+  },
+  {
+    path: "/chat",
+    name: "Chat",
+    component: Chat,
+    meta: {
+      title: "聊天室",
+    },
+  },
+  {
+    path: "/preview",
+    name: "Preview",
+    component: () => import("../views/PreviewPage.vue"),
+  },
+  {
+    path: "/404",
+    name: "404",
+    component: () => import("../views/ErrorPage.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)",
+    redirect: "/404",
   },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  }
+  next();
 });
 
 export default router;
