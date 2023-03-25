@@ -7,7 +7,9 @@ module.exports = {
       minPixelValue: 2, // 转换的最小单位
       selectorBlackList: [".ignore-container"], // 忽略的样式, 正则
       propList: ["*"], // 需要做转化处理的属性，如`hight`、`margin`等，也可以正则匹配
-      exclude: /node_modules/,
+      // include: /\/src\/.*\.vue$/,
+      include: /src\/(views\/PreviewPage\.vue|components\/Preview.*\.vue)/,
+      exclude: /(node_modules|src\/)/,
     },
   },
   /**

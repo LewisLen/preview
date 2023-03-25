@@ -6,7 +6,7 @@
 
 ```bash
 npm install
-npm install vue-router axios pinia element-plus socket.io-client --save
+npm install vue-router axios pinia echarts element-plus socket.io-client --save
 ```
 
 ## 屏幕适配
