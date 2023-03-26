@@ -2,7 +2,7 @@
   <div class="about">
     <h2>{{ route.params.userName }}</h2>
     <el-button type="primary" @click="query">查询</el-button>
-    <el-table :data="tableData" style="width: 100%">
+    <el-table :data="data.tableData" style="width: 100%">
       <el-table-column label="电影名" prop="title" width="180" />
       <el-table-column label="评分" prop="rate" width="180" />
       <el-table-column label="简介" prop="url" />
@@ -27,12 +27,12 @@
     </el-table>
 
     <el-dialog v-model="dialogFormVisible" title="编辑">
-      <el-form :model="editData">
+      <el-form :model="data.editData">
         <el-form-item label="电影名" :label-width="formLabelWidth">
-          <el-input v-model="editData.title" autocomplete="off" />
+          <el-input v-model="data.editData.title" autocomplete="off" />
         </el-form-item>
         <el-form-item label="评分" :label-width="formLabelWidth">
-          <el-input v-model="editData.rate" autocomplete="off" />
+          <el-input v-model="data.editData.rate" autocomplete="off" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -45,81 +45,67 @@
   </div>
 </template>
 
-<script>
-import { ref, reactive, toRefs, onMounted } from "vue";
+<script setup lang="ts">
+import { ref, reactive, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import axios from "@/utils/axios";
-export default {
-  setup() {
-    // const currentInstance = getCurrentInstance();
-    // const { $http } = currentInstance.appContext.config.globalProperties;
-    const route = useRoute();
 
-    const dialogFormVisible = ref(false);
-    const formLabelWidth = "140px";
+const route = useRoute();
 
-    function query() {
-      axios.get("/movies/query").then((res) => {
-        // data.tableData = res.data.movieList;
-        data.tableData = res.data;
-      });
-    }
+const dialogFormVisible = ref(false);
+const formLabelWidth = "140px";
 
-    function handleEdit(index, row) {
-      dialogFormVisible.value = true;
-      data.editData = row;
-    }
+function query() {
+  axios.get("/movies/query").then((res) => {
+    // data.tableData = res.data.movieList;
+    data.tableData = res.data;
+  });
+}
 
-    const editMovie = () => {
-      const { title, rate, id } = data.editData || {};
-      axios
-        .post("/movies/update", {
-          id,
-          title,
-          rate,
-        })
-        .then((res) => {
-          console.log(res);
-          dialogFormVisible.value = false;
-          query();
-        });
-    };
+function handleEdit(index, row) {
+  dialogFormVisible.value = true;
+  data.editData = row;
+}
 
-    function deleteMovie(index, row) {
-      const { id } = row || {};
+const editMovie = () => {
+  const { title, rate, id } = data.editData || {};
+  axios
+    .post("/movies/update", {
+      id,
+      title,
+      rate,
+    })
+    .then((res) => {
+      console.log(res);
       dialogFormVisible.value = false;
-      axios({
-        url: "/movies/delete",
-        method: "POST",
-        data: {
-          id,
-        },
-      }).then((res) => {
-        console.log(res);
-        query();
-      });
-    }
-
-    const data = reactive({
-      tableData: [],
-      editData: {},
-    });
-    const refData = toRefs(data);
-
-    onMounted(() => {
       query();
-      console.log(route.params);
     });
-    return {
-      ...refData,
-      dialogFormVisible,
-      formLabelWidth,
-      query,
-      deleteMovie,
-      handleEdit,
-      editMovie,
-      route,
-    };
-  },
 };
+
+function deleteMovie(index, row) {
+  const { id } = row || {};
+  dialogFormVisible.value = false;
+  axios({
+    url: "/movies/delete",
+    method: "POST",
+    data: {
+      id,
+    },
+  }).then((res) => {
+    console.log(res);
+    query();
+  });
+}
+
+const data = reactive({
+  tableData: [],
+  editData: {
+    title: "",
+    rate: "",
+  },
+});
+
+onMounted(() => {
+  query();
+});
 </script>

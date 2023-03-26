@@ -1,17 +1,10 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/HomePage.vue";
 import Login from "../views/LoginPage.vue";
-import Chat from "../views/ChatPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/demo",
-    name: "Demo",
-    component: () => import("../views/DemoPage.vue"),
-  },
-  {
     path: "/",
-    name: "Index",
     redirect: "/home",
   },
   {
@@ -32,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/chat",
     name: "Chat",
-    component: Chat,
+    component: () => import("../views/ChatPage.vue"),
     meta: {
       title: "聊天室",
     },
@@ -41,11 +34,17 @@ const routes: Array<RouteRecordRaw> = [
     path: "/preview",
     name: "Preview",
     component: () => import("../views/PreviewPage.vue"),
+    meta: {
+      title: "大数据图表",
+    },
   },
   {
     path: "/404",
     name: "404",
     component: () => import("../views/ErrorPage.vue"),
+    meta: {
+      title: "找不到页面",
+    },
   },
   {
     path: "/:pathMatch(.*)",
@@ -58,6 +57,13 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
+  // TODO: 控制登陆，还可以从store中获取状态
+  // const _token = sessionStorage.getItem("token") || "";
+  // if (!_token) {
+  //   router.push({
+  //     name: "Login",
+  //   });
+  // }
   if (to.meta.title) {
     document.title = to.meta.title as string;
   }

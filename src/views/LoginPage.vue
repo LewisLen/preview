@@ -1,5 +1,5 @@
 <template>
-  <div class="form-content">
+  <div class="login-content">
     <el-form>
       <el-form-item label="账号">
         <el-input v-model="userName" placeholder="请输入账号" maxlength="10" />
@@ -28,14 +28,19 @@ import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import axios from "@/utils/axios";
 
-const data = reactive({
+interface IuserInfo {
+  userName: string;
+  passWord: string;
+}
+const userInfo: IuserInfo = {
   userName: "",
   passWord: "",
-});
+};
 
-// const currentInstance = getCurrentInstance();
-// const { $http } = currentInstance.appContext.config.globalProperties;
+const userInfoData: IuserInfo = reactive(userInfo);
 const router = useRouter();
+
+const { userName, passWord } = toRefs(userInfoData);
 
 function register() {
   axios({
@@ -43,8 +48,8 @@ function register() {
     method: "POST",
     headers: { isHideLoading: true },
     data: {
-      userName: data.userName,
-      passWord: data.passWord,
+      userName: userInfoData.userName,
+      passWord: userInfoData.passWord,
     },
   }).then((res) => {
     console.log(res);
@@ -57,13 +62,13 @@ function login() {
     method: "POST",
     headers: { isHideLoading: true },
     data: {
-      userName: data.userName,
-      passWord: data.passWord,
+      userName: userInfoData.userName,
+      passWord: userInfoData.passWord,
     },
   })
     .then((res) => {
-      data.userName = "";
-      data.passWord = "";
+      userInfoData.userName = "";
+      userInfoData.passWord = "";
       sessionStorage.setItem("__tokenInfo__", res.token || "");
       router.push({
         name: "About",
@@ -87,17 +92,15 @@ function query() {
     console.log(res);
   });
 }
-
-const { userName, passWord } = toRefs(data);
 </script>
 
-<style scoped>
-.form-content {
+<style scoped lang="scss">
+.login-content {
   width: 400px;
-  height: 300px;
+  height: 140px;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-200px, -150px);
+  transform: translate(-200px, -70px);
 }
 </style>
