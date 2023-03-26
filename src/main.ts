@@ -7,7 +7,6 @@ import "element-plus/dist/index.css";
 import router from "./router";
 // import axios from "./utils/axios";
 import Item from "./components/ItemList.vue";
-import "@/assets/js/lib-flexible";
 
 const pinia = createPinia();
 const app = createApp(App);

@@ -1,13 +1,11 @@
 <template>
-  <div class="box">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-  </div>
+  <PreviewHeader></PreviewHeader>
+  <router-view />
 </template>
 
-<script setup>
+<script setup lang="ts">
+import PreviewHeader from "@/components/PreviewHeader.vue";
+
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";

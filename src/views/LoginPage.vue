@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // import { reactive, toRefs, getCurrentInstance } from "vue";
 import { reactive, toRefs } from "vue";
 import { useRouter } from "vue-router";

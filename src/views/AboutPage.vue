@@ -60,7 +60,8 @@ export default {
 
     function query() {
       axios.get("/movies/query").then((res) => {
-        data.tableData = res.data.movieList;
+        // data.tableData = res.data.movieList;
+        data.tableData = res.data;
       });
     }
 
