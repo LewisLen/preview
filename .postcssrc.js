@@ -2,14 +2,14 @@ module.exports = {
   plugins: {
     autoprefixer: {},
     "postcss-pxtorem": {
-      rootValue: 80, // 设计稿宽度的1/10
-      unitPrecision: 4, // 小数位
-      minPixelValue: 2, // 转换的最小单位
-      selectorBlackList: [".ignore-container"], // 忽略的样式, 正则
-      propList: ["*"], // 需要做转化处理的属性，如`hight`、`margin`等，也可以正则匹配
+      rootValue: 80, // 设计稿宽度的1/10，用于计算 rem 的基准值
+      unitPrecision: 4, // 小数位，用于设置 rem 的精度；
+      minPixelValue: 2, // 转换的最小单位，小于该值的不做转换；
+      selectorBlackList: [".ignore-container"], // 忽略的样式，可以设置一个数组或正则表达式；
+      propList: ["*"], // 需要做转化处理的属性，如hight、margin等，也可以正则匹配；
       // include: /\/src\/.*\.vue$/,
-      include: /src\/(views\/PreviewPage\.vue|components\/Preview.*\.vue)/,
-      exclude: /(node_modules|src\/)/,
+      include: /src\/(views\/PreviewPage\.vue|components\/Preview.*\.vue)/, // 包含要转换的文件
+      exclude: /(node_modules|src\/)/, // 排除不需要转换的文件，这里排除了 node_modules 目录下的文件。
     },
   },
   /**
