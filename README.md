@@ -1,6 +1,6 @@
 # 可视化项目
 
-前端：Vue3.x + Echarts5.0 + vue-router + axios + ts
+前端：Vue3.x + Echarts5.0 + vue-router + axios + ts + pinia + element-plus + socket.io-client
 后端：Nodejs + Express
 屏幕适配：rem 屏幕适配 lib-flexible.js
 
@@ -49,4 +49,28 @@ module.exports = {
     },
   },
 };
+```
+
+
+
+## 记录一些问题
+
+#### tsconfig.json 提示错误信息：
+
+> Cannot find type definition file for 'webpack-env'.The file is in the program because:Entry point of type library 'webpack-env' specified in compilerOptionsts
+
+解决方案：因为Webpack需要引入webpack-env库
+
+```bash
+npm install @types/webpack-env --save-dev
+```
+
+#### vue文件
+
+`<script setup>` 波澜线提示，只需要在 tsconfig.json 中添加配置信息，或者改成 `<script setup lang='ts'>` 即可
+
+```json
+{
+  "allowJs": true, // 可以解决vue文件中<script>提示问题
+}
 ```
