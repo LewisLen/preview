@@ -1,0 +1,50 @@
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+let maxAttempts = 7; // 设置最大尝试次数
+let secretNumber = Math.floor(Math.random() * 100) + 1; // 生成一个1到100之间的随机数作为答案
+let attempts = 0; // 当前尝试次数
+
+rl.question("请输入一个1到100之间的数字：", (answer) => {
+  attempts++;
+
+  guessNumber(answer, maxAttempts);
+});
+
+function guessNumber(answer, maxAttempts) {
+  if (answer < secretNumber) {
+    rl.question("猜小了，请再试一次：", (answer) => {
+      attempts++;
+
+      if (attempts < maxAttempts) {
+        guessNumber(answer, maxAttempts);
+      } else {
+        rl.write(
+          `很遗憾，你的答案不正确。正确答案是${secretNumber}。\n你一共猜了${attempts}次。`
+        );
+        rl.close();
+      }
+    });
+  } else if (answer > secretNumber) {
+    rl.question("猜大了，请再试一次：", (answer) => {
+      attempts++;
+
+      if (attempts < maxAttempts) {
+        guessNumber(answer, maxAttempts);
+      } else {
+        rl.write(
+          `很遗憾，你的答案不正确。正确答案是${secretNumber}。\n你一共猜了${attempts}次。`
+        );
+        rl.close();
+      }
+    });
+  } else {
+    rl.write(
+      `恭喜你，猜对了！答案是${secretNumber}。\n你一共猜了${attempts}次。`
+    );
+    rl.close();
+  }
+}

@@ -11,6 +11,15 @@ module.exports = {
       include: /src\/(views\/PreviewPage\.vue|components\/Preview.*\.vue)/, // 包含要转换的文件
       exclude: /(node_modules|src\/)/, // 排除不需要转换的文件，这里排除了 node_modules 目录下的文件。
     },
+    "postcss-px-to-viewport": {
+      viewportWidth: 750, // 视窗的宽度，对应的是我们设计稿的宽度，一般是750
+      unitPrecision: 3, // 小数位
+      viewportUnit: "vw",
+      selectorBlackList: [".ignore-class"], // 指定不转换为视窗单位的类名
+      minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换
+      include: /src\/views\/SchoolRecords.vue/,
+      mediaQuery: false,
+    },
   },
   /**
    * 移动端h5+vant配置

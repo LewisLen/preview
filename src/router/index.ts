@@ -39,6 +39,22 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/count",
+    name: "CountPage",
+    component: () => import("../views/CountPage.vue"),
+    meta: {
+      title: "计算示例",
+    },
+  },
+  {
+    path: "/record",
+    name: "Record",
+    component: () => import("../views/SchoolRecords.vue"),
+    meta: {
+      title: "分数展示",
+    },
+  },
+  {
     path: "/404",
     name: "404",
     component: () => import("../views/ErrorPage.vue"),

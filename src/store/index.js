@@ -17,6 +17,9 @@ export const useUsersStore = defineStore("users", {
     increment() {
       this.count++;
     },
+    decrement() {
+      this.count--;
+    },
     randomizeCounter() {
       this.count = Math.round(100 * Math.random());
     },
