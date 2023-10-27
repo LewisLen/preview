@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   plugins: {
     autoprefixer: {},
@@ -17,7 +19,7 @@ module.exports = {
       viewportUnit: "vw",
       selectorBlackList: [".ignore-class"], // 指定不转换为视窗单位的类名
       minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换
-      include: /src\/views\/SchoolRecords.vue/,
+      include: /src\/views\/m\/*.vue/,
       mediaQuery: false,
     },
   },

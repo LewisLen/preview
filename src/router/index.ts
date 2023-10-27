@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/chat",
     name: "Chat",
-    component: () => import("../views/ChatPage.vue"),
+    component: () => import("../views/m/ChatPage.vue"),
     meta: {
       title: "聊天室",
     },
@@ -49,7 +49,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/record",
     name: "Record",
-    component: () => import("../views/SchoolRecords.vue"),
+    component: () => import("../views/m/SchoolRecords.vue"),
     meta: {
       title: "分数展示",
     },

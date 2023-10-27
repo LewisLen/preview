@@ -236,3 +236,7 @@ body {
 input {
   -webkit-user-select: auto;
 }
+
+[id="app"]{
+  height: 100%;
+}
